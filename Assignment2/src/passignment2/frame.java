@@ -106,6 +106,7 @@ public class frame extends JFrame {
 		tabbedPane.addTab("View All Registrations", null, contentPane, null);
 		
 		JTextPane txtpnHello = new JTextPane();
+		txtpnHello.setEditable(false);
 		txtpnHello.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		txtpnHello.setBackground(Color.LIGHT_GRAY);
 		txtpnHello.setText("This tab shows all of the current registrations. You can use the options below to either sort the results or search for specific results.");
@@ -238,6 +239,7 @@ public class frame extends JFrame {
 		panel_3.add(lblNewZealandIndividual);
 		
 		txtpnThisTabAllows = new JTextPane();
+		txtpnThisTabAllows.setEditable(false);
 		txtpnThisTabAllows.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		txtpnThisTabAllows.setBackground(Color.LIGHT_GRAY);
 		txtpnThisTabAllows.setText("This tab allows you to view details of each individual registration. You can use the next and previous buttons to move through the list.");
@@ -321,6 +323,7 @@ public class frame extends JFrame {
 		panel_1.add(btnSubmit_1);
 		
 		txtpnThisTabIs = new JTextPane();
+		txtpnThisTabIs.setEditable(false);
 		txtpnThisTabIs.setBackground(Color.LIGHT_GRAY);
 		txtpnThisTabIs.setText("This tab is just an extras tab. You can use the text boxes to the left to return some interesting facts about the make and year you enter.");
 		txtpnThisTabIs.setBounds(446, 68, 170, 86);

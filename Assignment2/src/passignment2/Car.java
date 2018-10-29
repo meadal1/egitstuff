@@ -7,7 +7,7 @@ public class Car implements Comparable<Car>{
 	private String bodyType;
 	private int engineSize;
 	private int nzRegoYear;
-	private int nzRegoMonth;
+	private Month nzRegoMonth;
 	private int vehicleWeight;
 	private String make;
 	private String model;
@@ -25,7 +25,6 @@ public class Car implements Comparable<Car>{
 		this.bodyType = bodyType;
 		this.engineSize = engineSize;
 		this.nzRegoYear = nzRegoYear;
-		this.nzRegoMonth = nzRegoMonth;
 		this.vehicleWeight = vehicleWeight;
 		this.make = make;
 		this.model = model;
@@ -34,6 +33,7 @@ public class Car implements Comparable<Car>{
 		this.carYear = carYear;
 		this.vin = vin;
 		this.fuel = fuel;
+		setNzRegoMonth(nzRegoMonth);
 		
 	}
 	
@@ -70,12 +70,49 @@ public class Car implements Comparable<Car>{
 		this.nzRegoYear = nzRegoYear;
 	}
 
-	public int getNzRegoMonth() {
+	public Month getNzRegoMonth() {
 		return nzRegoMonth;
 	}
 
 	public void setNzRegoMonth(int nzRegoMonth) {
-		this.nzRegoMonth = nzRegoMonth;
+		switch(nzRegoMonth) {
+		case 1:
+			this.nzRegoMonth = Month.JANUARY;
+			break;
+		case 2:
+			this.nzRegoMonth = Month.FEBRUARY;
+			break;
+		case 3:
+			this.nzRegoMonth = Month.MARCH;
+			break;
+		case 4:
+			this.nzRegoMonth = Month.APRIL;
+			break;
+		case 5:
+			this.nzRegoMonth = Month.MAY;
+			break;
+		case 6:
+			this.nzRegoMonth = Month.JUNE;
+			break;
+		case 7:
+			this.nzRegoMonth = Month.JULY;
+			break;
+		case 8:
+			this.nzRegoMonth = Month.AUGUST;
+			break;
+		case 9:
+			this.nzRegoMonth = Month.SEPTEMBER;
+			break;
+		case 10:
+			this.nzRegoMonth = Month.OCTOBER;
+			break;
+		case 11:
+			this.nzRegoMonth = Month.NOVEMBER;
+			break;
+		case 12:
+			this.nzRegoMonth = Month.DECEMBER;
+			break;
+	}
 	}
 
 	public int getVehicleWeight() {
