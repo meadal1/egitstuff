@@ -6,13 +6,18 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTable;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class frame extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
 	/**
@@ -51,7 +56,14 @@ public class frame extends JFrame {
 		lblNewZealandCar.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		panel.add(lblNewZealandCar);
 		
-		JButton btnShowAllVehicles = new JButton("Show All Vehicles");
+		JButton btnShowAllVehicles = new JButton("Show Vehicles");
+		btnShowAllVehicles.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFrame frame2 = new showAll();
+				frame2.setSize(600, 500);
+				frame2.setVisible(true);
+			}
+		});
 		btnShowAllVehicles.setBounds(56, 86, 137, 23);
 		panel.add(btnShowAllVehicles);
 	}

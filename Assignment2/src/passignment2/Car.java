@@ -1,6 +1,9 @@
 package passignment2;
 
+import java.util.Comparator;
+
 public class Car implements Comparable<Car>{
+	private int id;
 	private String bodyType;
 	private int engineSize;
 	private int nzRegoYear;
@@ -15,8 +18,9 @@ public class Car implements Comparable<Car>{
 	private int carYear;
 	private String vin;
 	
-	public Car(String colour, String bodyType, int engineSize, int nzRegoYear, int nzRegoMonth, int vehicleWeight, String make, String model,
+	public Car(int id, String colour, String bodyType, int engineSize, int nzRegoYear, int nzRegoMonth, int vehicleWeight, String make, String model,
 	String fuel, String originalCountry, String location, int carYear, String vin) {
+		this.id = id;
 		this.colour = colour;
 		this.bodyType = bodyType;
 		this.engineSize = engineSize;
@@ -36,7 +40,7 @@ public class Car implements Comparable<Car>{
 	@Override
 	public int compareTo(Car arg0) {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.id - arg0.id;
 	}
 	
 	public String toString() {
@@ -146,4 +150,38 @@ public class Car implements Comparable<Car>{
 	public void setVin(String vin) {
 		this.vin = vin;
 	}
+	
+	public static Comparator<Car> MakeComparator = new Comparator<Car>( ) {
+
+		@Override
+		public int compare(Car arg0, Car arg1) {
+			return arg0.getMake().compareTo(arg1.getMake());
+		}
+	
+	};
+	
+	public static Comparator<Car> ModelComparator = new Comparator<Car>( ) {
+
+		@Override
+		public int compare(Car arg0, Car arg1) {
+			return arg0.getModel().compareTo(arg1.getModel());
+		}
+	
+	};
+	public static Comparator<Car> YearComparator = new Comparator<Car>( ) {
+
+		@Override
+		public int compare(Car arg0, Car arg1) {
+			return arg0.getCarYear() - arg1.getCarYear();
+		}
+	
+	};
+	public static Comparator<Car> ColourComparator = new Comparator<Car>( ) {
+
+		@Override
+		public int compare(Car arg0, Car arg1) {
+			return arg0.getColour().compareTo(arg1.getColour());
+		}
+	
+	};
 }
