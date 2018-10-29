@@ -2,11 +2,15 @@ package passignment2;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import org.jfree.chart.*;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+
+import org.jfree.data.general.DefaultPieDataset;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -15,12 +19,12 @@ import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Locale;
 import java.awt.event.ActionEvent;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
-import javax.swing.JTextArea;
 import java.awt.Color;
 
 public class frame extends JFrame {
@@ -39,7 +43,6 @@ public class frame extends JFrame {
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JLabel lblNewZealandMotor;
-	private JLabel lblGraphs;
 	private JLabel lblNewLabel;
 	private JTextField textField_4;
 	private JTextField textField_5;
@@ -97,9 +100,15 @@ public class frame extends JFrame {
 		panel.setLayout(null);
 		
 		lblNewZealandMotor = new JLabel("New Zealand Motor Vehicle Registrations");
-		lblNewZealandMotor.setBounds(71, 11, 513, 32);
-		lblNewZealandMotor.setFont(new Font("Verdana", Font.PLAIN, 25));
+		lblNewZealandMotor.setBounds(10, 156, 627, 53);
+		lblNewZealandMotor.setFont(new Font("Verdana", Font.PLAIN, 30));
 		panel.add(lblNewZealandMotor);
+		
+		JTextPane txtpnPleaseUseThe = new JTextPane();
+		txtpnPleaseUseThe.setBackground(Color.LIGHT_GRAY);
+		txtpnPleaseUseThe.setText("Please use the above tabs to navigate!");
+		txtpnPleaseUseThe.setBounds(208, 220, 202, 20);
+		panel.add(txtpnPleaseUseThe);
 		
 		contentPane = new JPanel();
 		showAll();
@@ -248,11 +257,8 @@ public class frame extends JFrame {
 		
 		
 		panel_2 = new JPanel();
-		tabbedPane.addTab("View Graphs", null, panel_2, null);
-		
-		lblGraphs = new JLabel("Graphs");
-		lblGraphs.setFont(new Font("Verdana", Font.PLAIN, 25));
-		panel_2.add(lblGraphs);
+		tabbedPane.addTab("View Graph", null, panel_2, null);
+		CreateABarChartTab();
 		
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Extras", null, panel_1, null);
@@ -326,7 +332,7 @@ public class frame extends JFrame {
 		txtpnThisTabIs.setEditable(false);
 		txtpnThisTabIs.setBackground(Color.LIGHT_GRAY);
 		txtpnThisTabIs.setText("This tab is just an extras tab. You can use the text boxes to the left to return some interesting facts about the make and year you enter.");
-		txtpnThisTabIs.setBounds(446, 68, 170, 86);
+		txtpnThisTabIs.setBounds(446, 68, 170, 84);
 		panel_1.add(txtpnThisTabIs);
 	}
 	
@@ -593,5 +599,27 @@ public class frame extends JFrame {
 		scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(5, 44, 318, 460);
 		return scrollPane;
+	}
+	
+	public void CreateABarChartTab() {
+		DefaultPieDataset dataset = new DefaultPieDataset();
+		ArrayList<String> brands = new ArrayList<String>();
+		for(Car c : carSingle) {
+			if(!brands.contains(c.getMake())) {
+				brands.add(c.getMake());
+			}
+		}
+		for(String s : brands) {
+			int count = utilities.countByMake(carSingle, s);
+			if(count > 5) {
+				dataset.setValue(s, count);
+			}
+		}
+		JFreeChart chart = ChartFactory.createPieChart("Chart of Main Brand Counts (Above 5)", dataset, true, true, Locale.ENGLISH);
+		panel_2.setLayout(null);
+		ChartPanel mypanel3 = new ChartPanel(chart);
+		mypanel3.setBounds(10, 11, 636, 508);
+		panel_2.add(mypanel3);
+		mypanel3.setLayout(null);
 	}
 }
