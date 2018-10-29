@@ -53,6 +53,16 @@ public class frame extends JFrame {
 	private int singleCount;
 	private JLabel lblNewZealandIndividual;
 	private JTextPane txtpnThisTabAllows;
+	private JLabel lblExtras;
+	private JLabel lblNewLabel_1;
+	private JLabel lblEnterAYear;
+	private JTextField textField_13;
+	private JTextField textField_14;
+	private JLabel resultLabel1;
+	private JLabel resultLabel2;
+	private JLabel resultLabel3;
+	private JButton btnSubmit_1;
+	private JTextPane txtpnThisTabIs;
 
 
 	public static void main(String[] args) {
@@ -241,6 +251,80 @@ public class frame extends JFrame {
 		lblGraphs = new JLabel("Graphs");
 		lblGraphs.setFont(new Font("Verdana", Font.PLAIN, 25));
 		panel_2.add(lblGraphs);
+		
+		JPanel panel_1 = new JPanel();
+		tabbedPane.addTab("Extras", null, panel_1, null);
+		panel_1.setLayout(null);
+		
+		lblExtras = new JLabel("Extras! ");
+		lblExtras.setBounds(278, 5, 99, 32);
+		lblExtras.setFont(new Font("Verdana", Font.PLAIN, 25));
+		panel_1.add(lblExtras);
+		
+		lblNewLabel_1 = new JLabel("Enter a Make:");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNewLabel_1.setBounds(70, 72, 114, 37);
+		panel_1.add(lblNewLabel_1);
+		
+		lblEnterAYear = new JLabel("Enter a Year:");
+		lblEnterAYear.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblEnterAYear.setBounds(70, 120, 114, 32);
+		panel_1.add(lblEnterAYear);
+		
+		textField_13 = new JTextField();
+		textField_13.setBounds(210, 82, 134, 20);
+		panel_1.add(textField_13);
+		textField_13.setColumns(10);
+		
+		textField_14 = new JTextField();
+		textField_14.setColumns(10);
+		textField_14.setBounds(210, 128, 134, 20);
+		panel_1.add(textField_14);
+		
+		resultLabel1 = new JLabel("");
+		resultLabel1.setBounds(46, 274, 500, 14);
+		panel_1.add(resultLabel1);
+		
+		resultLabel2 = new JLabel("");
+		resultLabel2.setBounds(46, 343, 500, 14);
+		panel_1.add(resultLabel2);
+		
+		resultLabel3 = new JLabel("");
+		resultLabel3.setBounds(46, 406, 500, 14);
+		panel_1.add(resultLabel3);
+		
+		btnSubmit_1 = new JButton("Submit");
+		btnSubmit_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int result1 = -1;
+				float result2 = -1;
+				int result3 = -1;
+				if(!textField_13.getText().equals("")) {
+					result1 = utilities.countByMake(carSingle, textField_13.getText());
+					result2 = utilities.averageYearOfMake(carSingle, textField_13.getText());
+				}
+				if(!textField_14.getText().equals("")) {
+					result3 = utilities.countByYear(carSingle, Integer.parseInt(textField_14.getText()));
+				}
+				if(result1 != -1) {
+					resultLabel1.setText("There are " + result1 + " " + textField_13.getText() + " vehicles in the data.");
+				}
+				if(result2 != -1) {
+					resultLabel2.setText("The average year of " + textField_13.getText() + " vehicles in the data is " + result2 + ".");
+				}
+				if(result3 != -1) {
+					resultLabel3.setText("There are " + result3 + " vehicles made in " + textField_14.getText() + ".");
+				}
+			}
+		});
+		btnSubmit_1.setBounds(151, 181, 114, 44);
+		panel_1.add(btnSubmit_1);
+		
+		txtpnThisTabIs = new JTextPane();
+		txtpnThisTabIs.setBackground(Color.LIGHT_GRAY);
+		txtpnThisTabIs.setText("This tab is just an extras tab. You can use the text boxes to the left to return some interesting facts about the make and year you enter.");
+		txtpnThisTabIs.setBounds(446, 68, 170, 86);
+		panel_1.add(txtpnThisTabIs);
 	}
 	
 	public void showAll() {
