@@ -14,6 +14,7 @@ public class questions extends AppCompatActivity implements View.OnClickListener
     private int count;
     private Question[] questions;
     private TextView q;
+    private TextView wrong;
     private ImageView i;
     private RadioButton a1;
     private RadioButton a2;
@@ -21,6 +22,7 @@ public class questions extends AppCompatActivity implements View.OnClickListener
     private RadioButton a4;
     private RadioGroup rg;
     private int score;
+    private Button btnData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,7 @@ public class questions extends AppCompatActivity implements View.OnClickListener
         questions[9] = new Question("What bird is this?", "tui", "silvereye", "kaka", "hihi", "tui");
 
         q = (TextView) findViewById(R.id.q);
+        wrong = (TextView) findViewById(R.id.textView7);
         i = (ImageView) findViewById(R.id.imageView);
         rg = (RadioGroup) findViewById(R.id.rg);
         rg = (RadioGroup) findViewById(R.id.rg);
@@ -55,7 +58,7 @@ public class questions extends AppCompatActivity implements View.OnClickListener
         a4.setText(questions[0].getAnswer4());
         q.setText(questions[0].getQuestion());
 
-        Button btnData = (Button) findViewById(R.id.button2);
+        btnData = (Button) findViewById(R.id.button2);
         btnData.setOnClickListener(this);
 
     }
@@ -73,6 +76,12 @@ public class questions extends AppCompatActivity implements View.OnClickListener
         int selectedId = rg.getCheckedRadioButtonId();
         RadioButton selected = (RadioButton) findViewById(selectedId);
         if(questions[count].getCorrectAnswer() == selected.getText()) {
+            a1.setVisibility(View.VISIBLE);
+            a2.setVisibility(View.VISIBLE);
+            a3.setVisibility(View.VISIBLE);
+            a4.setVisibility(View.VISIBLE);
+            wrong.setVisibility(View.INVISIBLE);
+            btnData.setText("SUBMIT");
             count++;
             score = getScore() + 1;
             selected.setChecked(false);
@@ -112,7 +121,16 @@ public class questions extends AppCompatActivity implements View.OnClickListener
             }
         }
         else {
-
+            a1.setVisibility(View.INVISIBLE);
+            a2.setVisibility(View.INVISIBLE);
+            a3.setVisibility(View.INVISIBLE);
+            a4.setVisibility(View.INVISIBLE);
+            wrong.setVisibility(View.VISIBLE);
+            wrong.setText(("You were incorrect. The right answer is ") + questions[count].getCorrectAnswer());
+            score--;
+            a1.setText(questions[count].getCorrectAnswer());
+            a1.setChecked(true);
+            btnData.setText("CONTINUE");
         }
 
     }
