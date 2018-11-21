@@ -5,12 +5,12 @@ package com.example.aaron.endangeredbirds;
  */
 
 public class Question {
-    private String question;
-    private String answer1;
-    private String answer2;
-    private String answer3;
-    private String answer4;
-    private String correctAnswer;
+    private String question; //question
+    private String answer1; //first answer
+    private String answer2; //second answer
+    private String answer3; //third answer
+    private String answer4; //fourth answer
+    private String correctAnswer; //correct answer
     public Question(String q, String a1, String a2, String a3, String a4, String c) {
         setQuestion(q);
         setAnswer1(a1);
