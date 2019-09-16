@@ -99,7 +99,7 @@ public class frame extends JFrame {
 		tabbedPane.addTab("Home", null, panel, null);
 		panel.setLayout(null);
 		
-		lblNewZealandMotor = new JLabel("New ZZZZZZealand Motor Vehicle Registrations");
+		lblNewZealandMotor = new JLabel("New Zealand Motor Vehicle Registrations");
 		lblNewZealandMotor.setBounds(10, 156, 627, 53);
 		lblNewZealandMotor.setFont(new Font("Verdana", Font.PLAIN, 30));
 		panel.add(lblNewZealandMotor);
